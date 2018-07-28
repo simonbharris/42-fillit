@@ -23,6 +23,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+int				ft_abs(int n);
 size_t			ft_strlen(const char *str);
 void			ft_putchar_fd(const char c, int fd);
 void			ft_putchar(char c);

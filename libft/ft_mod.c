@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_mod.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 21:44:48 by sharris           #+#    #+#             */
-/*   Updated: 2018/07/27 22:38:50 by aalhomai         ###   ########.fr       */
+/*   Created: 2018/07/27 20:25:49 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/27 20:25:49 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-#include <unistd.h>
-#include "../libft/libft.h"
-
-# define VALID_CHAR(x) (x == '#' || x == '.' | x == '\n')
-
-typedef struct	s_shape
+int ft_mod(int nbr, int mod)
 {
-	char **shape;
-	int tsides;
-	int numblk;
-	int len;
-}				t_shape;
+	int i;
+	int n;
 
-<<<<<<< HEAD
-#endif
-=======
-int		ft_validateshape(char **shapes);
-
-#endif
->>>>>>> 136b8cdf5856672b54d4897444bb6255d5ae1991
+	i = 0;
+	n = 0;
+	while(i < nbr)
+	{
+		n = n + 1 == mod ? 0 : n + 1;
+		i++;
+	}
+	return (n);
+}

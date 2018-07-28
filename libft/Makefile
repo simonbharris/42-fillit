@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= libft.a
-FILES	= ft_abs.c \
+SRCS	= ft_abs.c \
 			ft_atoi.c \
 			ft_bzero.c \
 			ft_capitalize.c \
@@ -75,7 +75,7 @@ FILES	= ft_abs.c \
 			ft_strsub.c \
 			ft_strtrim.c \
 			ft_tolower.c \
-			ft_toupper.c
+			ft_toupper.c 
 OBJ		= $(SRCS:%.c=%.o)
 
 all: $(NAME)
@@ -83,8 +83,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		ar rcs $(NAME) $(OBJ)
 
-$(OBJ): $(FILES)
-		gcc -Wall -Wextra -Werror -c $(FILES)
+$(OBJ): $(SRCS)
+		gcc -Wall -Wextra -Werror -c $(SRCS)
 
 clean:
 		rm -f $(OBJ)

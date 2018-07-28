@@ -25,4 +25,6 @@ typedef struct	s_shape
 	int len;
 }				t_shape;
 
+int		ft_validateshape(char **shapes);
+
 #endif

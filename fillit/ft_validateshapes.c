@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-#define SHAPELEN 19
+#define SHAPELEN 20
 
 /*
 ** Works on 1D strings only (NOT 2D)
@@ -53,6 +53,7 @@ static int	check_shape_params(char *s)
 	i = 0;
 	h = 0;
 	ttsc = 0;
+	printf("%s\n", s);
 	while (s[i] && i < 20)
 	{
 		if (s[i] == '#')
@@ -64,7 +65,9 @@ static int	check_shape_params(char *s)
 		i++;
 	}
 	if (h != 4 || i != SHAPELEN || (ttsc != 6 && ttsc != 8))
+	{
 		return (0);
+	}
 	return (1);
 }
 
@@ -76,10 +79,13 @@ static int	check_shape_params(char *s)
 ** define at the top: SHAPELEN)
 */
 
-int			ft_validateshape(char **shapes)
+int			ft_validateshapes(t_list *shapes)
 {
-	while (*shapes[0])
-		if (!check_shape_params(*shapes++))
+	while (shapes)
+	{
+		if (!check_shape_params((char *)shapes->content))
 			return (0);
+		shapes = shapes->next;
+	}
 	return (1);
 }

@@ -24,6 +24,7 @@ typedef struct	s_list
 }				t_list;
 
 int				ft_abs(int n);
+void    		ft_lstdelone_f(void *content, size_t size);
 size_t			ft_strlen(const char *str);
 void			ft_putchar_fd(const char c, int fd);
 void			ft_putchar(char c);

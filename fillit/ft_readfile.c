@@ -13,7 +13,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
-
+#include "fillit.h"
+#include <errno.h>
 static char	*ft_append_str(void *ptr, size_t size)
 {
 	void *newptr;
@@ -27,27 +28,29 @@ static char	*ft_append_str(void *ptr, size_t size)
 	return (newptr);
 }
 
-char *ft_readfile(char *filename)
+t_list *ft_readfile(char *filename)
 {
 	int fd;
 	int	ret;
 	int size;
-	char *file;
 	char *temp;
+	t_list *lst;
 
+	lst = NULL;
 	size = 22;
 	fd = open(filename, O_RDONLY);
-	file = ft_strnew(21);
 	temp = ft_strnew(21);
-	while (ret = read(fd, temp, 21))
+	while ((ret = read(fd, temp, 21)))
 	{
-		ft_strcat(file, temp);
-		size += 21;
-		file = ft_append_str(file, size);
+		ft_lstadd(&lst, ft_lstnew(temp, sizeof(char) * 22));
 		ft_memset(temp, 0, 21);
+		if (lst->content == NULL)
+		{
+			ft_lstdel(&lst, ft_lstdelone_f);
+			break;
+		}
 	}	
-	return (file);
-
+	return (lst);
 }
 
 
@@ -55,7 +58,17 @@ int main(int argc, char **argv)
 {
 	char *file;
 	file = argv[1];
-	
-	printf("%s\n", file);
+	t_list *start = ft_readfile(file);
+	//printf("##### Begin displaying list contents, must start on next line #######\n");
+	/*
+	while (lst->next)
+	{
+		
+		printf("%s\n", (char *)lst->content);
+		printf("-------list split---------\n");
+		printf("\n############ Plugging into validate shapes ############\n\n");
+		lst = lst->next;
+	}*/
+	printf("Validating file... %s\n", ft_validateshapes(start) ? "SUCCESS!" : "FAIL!");
 	return (0);
 }

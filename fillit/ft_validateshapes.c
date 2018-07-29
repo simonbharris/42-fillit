@@ -72,10 +72,10 @@ static int	check_shape_params(char *s)
 }
 
 /*
-** Make sure passed **shapes's final string is an empty string: ""
-** 
-** Each char * should represent 1 shape, represented as a single,
-** 19+1 null-terminated string (Can change this by changing the
+** ! OLD COMMENT Was changed to handle t_lists
+** Intakes a t_list link-list containing char * strings.
+**
+** ideally 20+1 null-terminated strings (Can change this by changing the
 ** define at the top: SHAPELEN)
 */
 

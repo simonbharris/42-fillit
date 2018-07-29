@@ -49,7 +49,8 @@ t_list *ft_readfile(char *filename)
 			ft_lstdel(&lst, ft_lstdelone_f);
 			break;
 		}
-	}	
+	}
+	ft_memdel((void *)&temp);
 	return (lst);
 }
 
@@ -70,5 +71,6 @@ int main(int argc, char **argv)
 		lst = lst->next;
 	}*/
 	printf("Validating file... %s\n", ft_validateshapes(start) ? "SUCCESS!" : "FAIL!");
+	sleep(15);
 	return (0);
 }

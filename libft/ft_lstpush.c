@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_lstpush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 21:44:48 by sharris           #+#    #+#             */
-/*   Updated: 2018/07/27 22:38:50 by aalhomai         ###   ########.fr       */
+/*   Created: 2018/07/28 23:36:15 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/28 23:36:15 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# define VALID_CHAR(x) (x == '#' || x == '.' | x == '\n')
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
-
-
-typedef struct	s_shape
+void	ft_lstpush(t_list **alst, t_list *new)
 {
-	char **shape;
-	int tsides;
-	int numblk;
-	int len;
-}				t_shape;
+	t_list *cur;
 
-int			ft_validateshapes(t_list *shapes);
-
-#endif
+	if (*alst)
+	{
+		cur = *alst;
+		while (cur->next)
+			cur = cur->next;
+		cur->next = new;
+	}
+	else
+		*alst = new;
+		
+}

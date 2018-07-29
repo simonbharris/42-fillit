@@ -10,11 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "../libft/libft.h"
 #include "fillit.h"
-#include <errno.h>
+
 static char	*ft_append_str(void *ptr, size_t size)
 {
 	void *newptr;
@@ -42,7 +39,7 @@ t_list *ft_readfile(char *filename)
 	temp = ft_strnew(21);
 	while ((ret = read(fd, temp, 21)))
 	{
-		ft_lstadd(&lst, ft_lstnew(temp, sizeof(char) * 22));
+		ft_lstpush(&lst, ft_lstnew(temp, sizeof(char) * 22));
 		ft_memset(temp, 0, 21);
 		if (lst->content == NULL)
 		{
@@ -71,6 +68,5 @@ int main(int argc, char **argv)
 		lst = lst->next;
 	}*/
 	printf("Validating file... %s\n", ft_validateshapes(start) ? "SUCCESS!" : "FAIL!");
-	sleep(15);
 	return (0);
 }

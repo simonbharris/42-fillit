@@ -30,5 +30,9 @@ void		fillit_usage(void);
 t_list		*ft_readfile(char *filename);
 int			ft_fillit(char *file);
 void		optimize_shapes(t_list *lst);
+char		*solve_fillit(t_list *shapes);
+
+//! DEBUG Should be static
+char		**malloc_fillit_box(int size);
 
 #endif

@@ -19,9 +19,18 @@ int main(int argc, char **argv)
 		{
 			ft_putstr("Error\n");
 		} 
-		else //! DEBUG REMOVE SUCCESS / ELSE MESSAGE
+		else
+		{
 			ft_putstr("Success!\n");
+		}
 	else
+	{
+		//! Debugging '.' square generator.
+			char **box = malloc_fillit_box(4);
+			while (*box[0])
+				printf("%s\n", *box++);
+		//! End debug
 		fillit_usage();
+	}
 	return (0);
 }

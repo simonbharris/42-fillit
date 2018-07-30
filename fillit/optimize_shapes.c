@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   optimize_shapes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 21:44:48 by sharris           #+#    #+#             */
-/*   Updated: 2018/07/27 22:38:50 by aalhomai         ###   ########.fr       */
+/*   Created: 2018/07/29 15:21:25 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/29 15:21:25 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# define VALID_CHAR(x) (x == '#' || x == '.' | x == '\n')
+#include "fillit.h"
 
-# include <fcntl.h>
-# include "../libft/libft.h"
+/*
+** Moves the shape (hashtags) so that the top-left corner of the shape 
+** begins on the first character of the string.
+*/
 
-typedef struct	s_shape
+static void shift_shape(char *str)
 {
-	char **shape;
-	int tsides;
-	int numblk;
-	int len;
-}				t_shape;
+	int start;
+	int i;
 
-int			ft_validateshapes(t_list *shapes);
-void		fillit_usage(void);
-t_list		*ft_readfile(char *filename);
-int			ft_fillit(char *file);
+	start = 0;
+	i = 0;
+	i = ft_strchr(str, '#');
+	ft_strncpy(str[start],str[i], ft_strlen(str[i] - 1));
+}
 
-#endif
+void	optimize_shapes(t_list *lst)
+{
+	while (lst)
+	{
+		shift_shape(lst->content);
+		lst = lst->next;
+	}
+}

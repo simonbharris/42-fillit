@@ -10,5 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// Test file
-// asim's edit
+#include "fillit.h"
+
+int ft_fillit(char *file)
+{
+	t_list *start = ft_readfile(file);
+	
+	// ! DEBUG RETURN VALUES : Only testing ft_validateshape's return.
+	if(ft_validateshapes(start))
+		return (1);
+	return (0);
+}

@@ -10,14 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
+
 int main(int argc, char **argv)
 {
-	if (argc != 2)
-		//print usage
-	else if //is_valid(argv)
-		//fillit(argv)
+	if (argc == 2)
+		if(!ft_fillit(argv[1]))
+		{
+			ft_putstr("Error\n");
+		} 
+		else //! DEBUG REMOVE SUCCESS / ELSE MESSAGE
+			ft_putstr("Success!\n");
 	else
-		//print error
-	
+		fillit_usage();
 	return (0);
 }

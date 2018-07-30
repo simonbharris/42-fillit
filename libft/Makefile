@@ -83,15 +83,15 @@ OBJ		= $(SRCS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar rcs $(NAME) $(OBJ)
+		@ar rcs $(NAME) $(OBJ)
 
 $(OBJ): $(SRCS)
-		gcc -Wall -Wextra -Werror -c $(SRCS)
+		@gcc -Wall -Wextra -Werror -c $(SRCS)
 
 clean:
-		rm -f $(OBJ)
+		@rm -f $(OBJ)
 
 fclean: clean
-		rm -f $(NAME)
+		@rm -f $(NAME)
 
 re: fclean all

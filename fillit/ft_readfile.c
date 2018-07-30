@@ -50,23 +50,3 @@ t_list *ft_readfile(char *filename)
 	ft_memdel((void *)&temp);
 	return (lst);
 }
-
-
-int main(int argc, char **argv)
-{
-	char *file;
-	file = argv[1];
-	t_list *start = ft_readfile(file);
-	//printf("##### Begin displaying list contents, must start on next line #######\n");
-	/*
-	while (lst->next)
-	{
-		
-		printf("%s\n", (char *)lst->content);
-		printf("-------list split---------\n");
-		printf("\n############ Plugging into validate shapes ############\n\n");
-		lst = lst->next;
-	}*/
-	printf("Validating file... %s\n", ft_validateshapes(start) ? "SUCCESS!" : "FAIL!");
-	return (0);
-}

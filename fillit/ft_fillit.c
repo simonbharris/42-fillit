@@ -18,6 +18,11 @@ int ft_fillit(char *file)
 	
 	// ! DEBUG RETURN VALUES : Only testing ft_validateshape's return.
 	if(ft_validateshapes(start))
+	{
+		optimize_shapes(start);
+		// ? Solver here?
+		// ? Print first solution.
 		return (1);
+	}
 	return (0);
 }

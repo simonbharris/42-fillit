@@ -29,5 +29,6 @@ int			ft_validateshapes(t_list *shapes);
 void		fillit_usage(void);
 t_list		*ft_readfile(char *filename);
 int			ft_fillit(char *file);
+void		optimize_shapes(t_list *lst);
 
 #endif

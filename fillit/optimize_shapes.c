@@ -12,27 +12,44 @@
 
 #include "fillit.h"
 
-/*
-** Moves the shape (hashtags) so that the top-left corner of the shape 
-** begins on the first character of the string.
-*/
-
-static void shift_shape(char *str)
+static void shift_shape(char **str)
 {
-	int start;
-	int i;
+	char *start;
+	char *seek;
+	size_t i;
 
-	start = 0;
-	i = 0;
-	i = ft_strchr(str, '#');
-	ft_strncpy(str[start],str[i], ft_strlen(str[i] - 1));
+	start = *str;
+	seek = ft_strchr(start, (int)'#');
+	if ((seek - start + 4 < 20 && seek[4] == '#') || (seek - start + 9 < 20 &&
+		seek[9] == '#'))
+		seek--;
+	while(*seek)
+	{
+		if (*seek == '\n')
+			seek++;
+		if (*start == '\n')
+			start++;
+		if (*start == '.' && *seek == '#')
+		{
+			*start = *seek;
+			*seek = '.';
+		}
+		start++;
+		seek++;
+	}
 }
+
+/*
+** Iterates through the shift_shapes call, re-organizing the string structure.
+** Places "blocks" in most top-left position. Accepts input from t_lists 
+** validated via ft_validateshapes();
+*/
 
 void	optimize_shapes(t_list *lst)
 {
 	while (lst)
 	{
-		shift_shape(lst->content);
+		shift_shape((char **)&lst->content);
 		lst = lst->next;
 	}
 }

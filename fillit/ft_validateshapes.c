@@ -53,7 +53,6 @@ static int	check_shape_params(char *s)
 	i = 0;
 	h = 0;
 	ttsc = 0;
-	printf("%s\n", s);
 	while (s[i] && i < 20)
 	{
 		if (s[i] == '#')
@@ -65,14 +64,11 @@ static int	check_shape_params(char *s)
 		i++;
 	}
 	if (h != 4 || i != SHAPELEN || (ttsc != 6 && ttsc != 8))
-	{
 		return (0);
-	}
 	return (1);
 }
 
 /*
-** ! OLD COMMENT Was changed to handle t_lists
 ** Intakes a t_list link-list containing char * strings.
 **
 ** ideally 20+1 null-terminated strings (Can change this by changing the

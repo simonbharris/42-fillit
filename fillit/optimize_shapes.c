@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static void shift_shape(char **str)
+static void shift_shape(char **str, int c)
 {
 	char *start;
 	char *seek;
@@ -29,10 +29,11 @@ static void shift_shape(char **str)
 			seek++;
 		if (*start == '\n')
 			start++;
-		if (*start == '.' && *seek == '#')
+		if ((*start == '.' && *seek == '#') || (*start == '#' && *seek == '#'))
 		{
-			*start = *seek;
-			*seek = '.';
+			*start = (char)c;
+			if (*seek == '#')
+				*seek = '.';
 		}
 		start++;
 		seek++;
@@ -47,9 +48,13 @@ static void shift_shape(char **str)
 
 void	optimize_shapes(t_list *lst)
 {
+	int alpha;
+
+	alpha = 'A';
 	while (lst)
 	{
-		shift_shape((char **)&lst->content);
+		shift_shape((char **)&lst->content, alpha);
 		lst = lst->next;
+		alpha = alpha + 1;
 	}
 }

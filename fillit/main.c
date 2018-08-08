@@ -14,21 +14,16 @@
 
 int main(int argc, char **argv)
 {
+	ft_putendl("Starting Program!");
 	if (argc == 2)
 		if(!ft_fillit(argv[1]))
-		{
-			ft_putstr("Error\n");
-		} 
+			ft_putendl("Error");
 		else
-		{
-			ft_putstr("Success!\n");
-		}
+			ft_putendl("Success!");
 	else
 	{
 		//! Debugging '.' square generator.
-			char **box = malloc_fillit_box(4);
-			while (*box[0])
-				printf("%s\n", *box++);
+
 		//! End debug
 		fillit_usage();
 	}

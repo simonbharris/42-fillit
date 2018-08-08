@@ -17,6 +17,9 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
+//! PRINTF LIBRARY
+#      include <stdio.h>
+
 typedef struct	s_shape
 {
 	char **shape;
@@ -31,8 +34,11 @@ t_list		*ft_readfile(char *filename);
 int			ft_fillit(char *file);
 void		optimize_shapes(t_list *lst);
 char		*solve_fillit(t_list *shapes);
+char		**get_solution(t_list *pieces);
 
 //! DEBUG Should be static
 char		**malloc_fillit_box(int size);
+int	place_piece(char **box, char *piece, int x,  int y);
+void remove_piece(char **box, char *piece, int x, int y);
 
 #endif

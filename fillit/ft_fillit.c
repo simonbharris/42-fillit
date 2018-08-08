@@ -15,11 +15,15 @@
 int ft_fillit(char *file)
 {
 	t_list *start = ft_readfile(file);
-	
+	char **box;
+
 	// ! DEBUG RETURN VALUES : Only testing ft_validateshape's return.
 	if(ft_validateshapes(start))
 	{
 		optimize_shapes(start);
+		box = get_solution(start);
+		while (*(box[0]))
+			ft_putendl(*box++);
 		// ? Solver here?
 		// ? Print first solution.
 		return (1);

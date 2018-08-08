@@ -12,31 +12,30 @@
 
 #include "fillit.h"
 
-static char	*ft_append_str(void *ptr, size_t size)
-{
-	void *newptr;
-	size_t old_size;
+// static char	*ft_append_str(void *ptr, size_t size)
+// {
+// 	void *newptr;
+// 	size_t old_size;
 
-	newptr = (char*)malloc(sizeof(char) * size);
-	ft_memset(newptr, 0, size);
-	old_size = ft_strlen(ptr);
-	ft_memcpy(newptr, ptr, old_size);
-	free(ptr);
-	return (newptr);
-}
+// 	newptr = (char*)malloc(sizeof(char) * size);
+// 	ft_memset(newptr, 0, size);
+// 	old_size = ft_strlen(ptr);
+// 	ft_memcpy(newptr, ptr, old_size);
+// 	free(ptr);
+// 	return (newptr);
+// }
 
 t_list *ft_readfile(char *filename)
 {
 	int fd;
 	int	ret;
 	int size;
-	char *temp;
+	char temp[21];
 	t_list *lst;
 
 	lst = NULL;
 	size = 22;
 	fd = open(filename, O_RDONLY);
-	temp = ft_strnew(21);
 	while ((ret = read(fd, temp, 21)))
 	{
 		ft_lstpush(&lst, ft_lstnew(temp, sizeof(char) * 22));

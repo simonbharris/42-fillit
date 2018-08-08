@@ -16,7 +16,6 @@ static void shift_shape(char **str, int c)
 {
 	char *start;
 	char *seek;
-	size_t i;
 
 	start = *str;
 	seek = ft_strchr(start, (int)'#');

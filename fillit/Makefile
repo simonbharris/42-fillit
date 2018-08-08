@@ -30,7 +30,7 @@ OBJ = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) -g $(FLAGS) $(INC) $(SRCS) $(LIB) -o $(NAME)
+	$(CC) $(FLAGS) $(INC) $(SRCS) $(LIB) -o $(NAME)
 
 $(LIBFT):
 	make -C ../libft

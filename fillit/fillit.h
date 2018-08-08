@@ -36,9 +36,4 @@ void		optimize_shapes(t_list *lst);
 char		*solve_fillit(t_list *shapes);
 char		**get_solution(t_list *pieces);
 
-//! DEBUG Should be static
-char		**malloc_fillit_box(int size);
-int	place_piece(char **box, char *piece, int x,  int y);
-void remove_piece(char **box, char *piece, int x, int y);
-
 #endif

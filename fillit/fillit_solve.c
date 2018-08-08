@@ -40,6 +40,19 @@ char **malloc_fillit_box(int size)
 	return (box);
 }
 
+/*
+** Places a pieces, represented by a (char *) into a char ** grid of '.'
+** and other alphabetical chars, the top left of the piece starts at x,y 
+** coordinates. 
+** Example of  (char *) piece: "....\n...#\n..##\n...#\0"
+** (By this point in the program, the '#' symbols are replaced with
+** a latter)
+**
+** Attempts to place the shape into the larger 2D box grid.
+** If shape collides with wall or another piece, it fails in placing return(0)
+** otherwise, return (1)
+*/
+
 int	place_piece(char **box, char *piece, int x,  int y)
 {
 	int ycur;
@@ -73,6 +86,12 @@ int	place_piece(char **box, char *piece, int x,  int y)
 	return (1);
 }
 
+/*
+** Called after trying to place a piece and failing. It removes any pieces
+** or blocksthat were placed by the given char* piece at x,y coordinates 
+** in char** box
+*/
+
 void remove_piece(char **box, char *piece, int x, int y)
 {
 	int ycur;
@@ -96,6 +115,27 @@ void remove_piece(char **box, char *piece, int x, int y)
 		x++;
 	}
 }
+
+/*
+** Attempts to place a (t_list *piece) inside of a (char** box) by 
+** brute forcing using a recursive backtracking method.
+**
+** x, y are coordinates to place, sf == bool-like flag for "Solution found"
+** Algorithm attempts to place a piece in top-left corner, and works it's
+** way right, then down.
+**
+** If a piece is successfully placed
+** Algorithm recurses and attempts to place the next piece.
+**
+** If a place_piece fails
+** it removes the blocks that may have successfully been placed in the grid
+** then moves this iteration's piece to the next step, and tries again.
+**
+** Eventuakky, if not all pieces first (the first piece has been tried in every
+** position) then the solver fails.
+** If all pieces are successfully placed; it returns a 1 up the chain and tells
+** the initial resursive_solver call that a solution was gound.
+*/
 
 int recursive_solver(char **box, t_list *pieces)
 {
@@ -128,6 +168,11 @@ int recursive_solver(char **box, t_list *pieces)
 		return (1);
 	return (0);
 }
+
+/*
+** Deletes a (char **) from memory.
+** The array must be terminated by an empty string.
+*/
 
 void ft_delbox(char ***box)
 {

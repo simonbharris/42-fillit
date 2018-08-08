@@ -27,5 +27,6 @@ int main(int argc, char **argv)
 		//! End debug
 		fillit_usage();
 	}
+	sleep(20);
 	return (0);
 }

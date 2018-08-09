@@ -126,13 +126,14 @@ void remove_piece(char **box, char *piece, int x, int y)
 **
 ** If a piece is successfully placed
 ** Algorithm recurses and attempts to place the next piece.
+** (If all pieces successfully place, "sf" turns "true" and recurses up stack
 **
 ** If a place_piece fails
 ** it removes the blocks that may have successfully been placed in the grid
 ** then moves this iteration's piece to the next step, and tries again.
 **
-** Eventuakky, if not all pieces first (the first piece has been tried in every
-** position) then the solver fails.
+** Eventually, if the first piece has tried every possible location
+** then the solver fails.
 ** If all pieces are successfully placed; it returns a 1 up the chain and tells
 ** the initial resursive_solver call that a solution was gound.
 */
@@ -144,25 +145,18 @@ int recursive_solver(char **box, t_list *pieces)
 	int sf;
 
 	sf = 0;
-	x = 0;
-	while (box[x][0] && pieces != NULL && sf == 0)
+	x = -1;
+	while (box[++x][0] && pieces != NULL && sf == 0)
 	{
-		y = 0;
-		while (box[x][y] && sf == 0)
+		y = -1;
+		while (box[x][++y] && sf == 0)
 		{
 			if (place_piece(box, pieces->content, x, y) == 1)
-			{
 				if (recursive_solver(box, pieces->next))
 					sf = 1;
-				break;
-			}
-			else
-			{
+			if (sf == 0)
 				remove_piece(box, pieces->content, x, y);
-				y++;
-			}
 		}
-		x++;
 	}
 	if (pieces == NULL || sf)
 		return (1);
@@ -186,6 +180,16 @@ void ft_delbox(char ***box)
 	*box = NULL;
 }
 
+/*
+** Generates a box to store the solution (Is freed if box is not large
+** enough, and remakes one size larger)
+**
+** Recursiver solver is the back-tracking algorithm,
+**    returns a 1 if solution found,
+**    returns a 0 if not found,
+** upon finding a solution, it returns the layout.
+*/
+
 char **get_solution(t_list *pieces)
 {
 	int size;
@@ -201,20 +205,3 @@ char **get_solution(t_list *pieces)
 	}
 	return (box);
 }
-
-/*
-
-	* What we have so far:
-		Read from file
-		Break shapes into a link-list                                                                                           
-		Verify + optimize string contents as a valid link-list.
-
-	Todo: Create function to drop a piece into a larger pre-alloced box of '.'
-	Todo: Create backtrack-recursive funciton for solve (Or an alternative algorithm)
-		Start with a box of 2x2, increase in size by 1 if no solution is found.
-		When being placed, pieces needs to be placed with an alpha character representing their original order.
-		Repeat until solution is found.
-		return solved puzzle (char**)?	
-	todo: Print out solved board.
-
-*/

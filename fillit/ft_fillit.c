@@ -16,16 +16,17 @@ int ft_fillit(char *file)
 {
 	t_list *start = ft_readfile(file);
 	char **box;
+	int i;
 
-	// ! DEBUG RETURN VALUES : Only testing ft_validateshape's return.
+	i = 0;
 	if(ft_validateshapes(start))
 	{
 		optimize_shapes(start);
 		box = get_solution(start);
-		while (*(box[0]))
-			ft_putendl(*box++);
-		// ? Solver here?
-		// ? Print first solution.
+		while (box[i][0])
+			ft_putendl(box[i++]);
+		ft_lstdel(&start, ft_lstdelone_f);
+		ft_delbox(&box);
 		return (1);
 	}
 	return (0);

@@ -40,6 +40,7 @@ static int	get_tsc(char *s, int i)
 ** i == gets strlen (must == 20 == 4x4 + 3 * (\n || \0))
 ** 							  		^  				^
 **					  	   (4x4 square)			(3 \n and or \0 chars)
+** STRLEN may be 1 less since the shape may be end of file. (No \n on last shape)
 ** ttsc == total touching sides count. Counts the total number of times a block
 ** is touching another block (must == 6 || 8)
 */
@@ -57,13 +58,13 @@ static int	check_shape_params(char *s)
 	{
 		if (s[i] == '#')
 			h++;
-		if ((ft_mod(i + 1, 5) == 0 && s[i] != '\n') || (s[i] != '#' &&
-			s[i] != '.' && s[i] != '\n'))
+		if ((ft_mod(i + 1, 5) == 0 && (s[i] != '\n' || (i == 19 && s[i] == '\0')))
+			|| ((s[i] != '#' && s[i] != '.' && s[i] != '\n')))
 			return (0);
 		ttsc += get_tsc(s, i);
 		i++;
 	}
-	if (h != 4 || i != SHAPELEN || (ttsc != 6 && ttsc != 8))
+	if (h != 4 || (i != SHAPELEN && i != SHAPELEN - 1) || (ttsc != 6 && ttsc != 8))
 		return (0);
 	return (1);
 }

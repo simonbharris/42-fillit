@@ -35,5 +35,7 @@ int			ft_fillit(char *file);
 void		optimize_shapes(t_list *lst);
 char		*solve_fillit(t_list *shapes);
 char		**get_solution(t_list *pieces);
+void		ft_delbox(char ***box);
+char		**malloc_fillit_box(int size);
 
 #endif

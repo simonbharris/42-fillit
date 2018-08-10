@@ -35,6 +35,7 @@ t_list *ft_readfile(char *filename)
 
 	lst = NULL;
 	size = 22;
+	ft_memset(temp, 0, 21);
 	fd = open(filename, O_RDONLY);
 	while ((ret = read(fd, temp, 21)))
 	{

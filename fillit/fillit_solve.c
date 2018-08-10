@@ -13,34 +13,6 @@
 #include "fillit.h"
 
 /*
-** Generates a square char** filled with '.' char
-** Deals with memory leaks in case of bad malloc
-*/
-
-char **malloc_fillit_box(int size)
-{
-	char **box;
-	int i;
-
-	i = 0;
-	if (NULL == (box = (char **)ft_memalloc(sizeof(char *) * size + 1)))
-		return (NULL);
-	while (i < size)
-	{
-		if (NULL == (box[i] = (char *)ft_memalloc(sizeof(char) * size + 1)))
-			while (--i >= 0)
-			{
-				free(box[i]);
-				return (NULL);
-			}
-		box[i] = ft_memset(box[i], '.', size);
-		i++;
-	}
-	box[i] = ft_strnew(size + 1);
-	return (box);
-}
-
-/*
 ** Places a pieces, represented by a (char *) into a char ** grid of '.'
 ** and other alphabetical chars, the top left of the piece starts at x,y 
 ** coordinates. 
@@ -96,9 +68,6 @@ void remove_piece(char **box, char *piece, int x, int y)
 {
 	int ycur;
 
-	// while (box[x][0])
-	// 	ft_putendl(*box++);
-	// ft_putendl(piece);
 	while (*piece && box[x][0])
 	{
 		ycur = y;
@@ -163,22 +132,6 @@ int recursive_solver(char **box, t_list *pieces)
 	return (0);
 }
 
-/*
-** Deletes a (char **) from memory.
-** The array must be terminated by an empty string.
-*/
-
-void ft_delbox(char ***box)
-{
-	int i;
-
-	i = 0;
-	while (box[0][i][0])
-		ft_memdel((void *)&box[0][i++]);
-	ft_memdel((void *)box[0][i]);
-	ft_memdel((void **)*box);
-	*box = NULL;
-}
 
 /*
 ** Generates a box to store the solution (Is freed if box is not large

@@ -14,19 +14,13 @@
 
 int main(int argc, char **argv)
 {
-	ft_putendl("Starting Program!");
-	if (argc == 2)
+	if (argc == 2 && argv[1])
+	{
 		if(!ft_fillit(argv[1]))
 			ft_putendl("Error");
-		else
-			ft_putendl("Success!");
-	else
-	{
-		//! Debugging '.' square generator.
-
-		//! End debug
-		fillit_usage();
 	}
+	else
+		fillit_usage();
 	sleep(20);
 	return (0);
 }

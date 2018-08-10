@@ -33,7 +33,7 @@ char **malloc_fillit_box(int size)
 				free(box[i]);
 				return (NULL);
 			}
-		box[i] = ft_memset(box[i], '.', size);
+		box[i] = ft_memset(box[i], '.', sizeof(char) * size);
 		i++;
 	}
 	box[i] = ft_strnew(size + 1);
@@ -50,9 +50,12 @@ void ft_delbox(char ***box)
 	int i;
 
 	i = 0;
-	while (box[0][i][0])
-		ft_memdel((void **)&(box[0][i++]));
-	ft_memdel((void **)&(box[0][i++]));
-	ft_memdel((void **)*box);
+	while (*(box[0][i]))
+	{
+		ft_memdel((void **)&(box[0][i]));
+		i++;
+	}
+	ft_memdel((void **)&(box[0][i]));
+	free(*box);
 	*box = NULL;
 }

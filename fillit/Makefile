@@ -24,7 +24,8 @@ SRCS =	fillit_usage.c \
 	ft_validateshapes.c \
 	main.c \
 	optimize_shapes.c \
-	fillit_solve.c
+	fillit_solve.c \
+	box_util.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

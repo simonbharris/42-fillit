@@ -6,7 +6,7 @@
 /*   By: aalhomai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 20:37:42 by aalhomai          #+#    #+#             */
-/*   Updated: 2018/07/27 23:29:13 by aalhomai         ###   ########.fr       */
+/*   Updated: 2018/08/11 5:25:13 by sharris           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@
 // 	free(ptr);
 // 	return (newptr);
 // }
+
+static int check_nullterm(t_list *lst)
+{
+	int i;
+	char *str;
+
+	i = 0;
+	if (lst == NULL)
+		return (0);
+	while(lst->next)
+		lst = lst->next;
+	str = lst->content;
+	while (str[i] && i <= 20)
+		i++;
+	if (str[i] != 0)
+		return(0);
+	return (1);
+}
 
 t_list *ft_readfile(char *filename)
 {
@@ -48,5 +66,5 @@ t_list *ft_readfile(char *filename)
 		}
 	}
 	ft_memdel((void *)&temp);
-	return (lst);
+	return ((check_nullterm(lst) ? lst : NULL));
 }

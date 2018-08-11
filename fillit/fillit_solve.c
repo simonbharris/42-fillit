@@ -6,16 +6,30 @@
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:40:14 by sharris           #+#    #+#             */
-/*   Updated: 2018/07/29 19:40:14 by sharris          ###   ########.fr       */
+/*   Updated: 2018/08/11 05:13:10 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+int place_block(char *target, char *piece, int *h)
+{
+	if (*target != '.' && (*piece >= 'A' && *piece <= 'Z'))
+		return (-1);
+	else if (*target == '\0')
+		return (0);
+	if (*target == '.' && (*piece >= 'A' && *piece <= 'Z'))
+	{
+		*target = *piece;
+		*h = *h + 1;
+	}
+	return (1);
+}
+
 /*
 ** Places a pieces, represented by a (char *) into a char ** grid of '.'
-** and other alphabetical chars, the top left of the piece starts at x,y 
-** coordinates. 
+** and other alphabetical chars, the top left of the piece starts at x,y
+** coordinates.
 ** Example of  (char *) piece: "....\n...#\n..##\n...#\0"
 ** (By this point in the program, the '#' symbols are replaced with
 ** a latter)
@@ -25,10 +39,11 @@
 ** otherwise, return (1)
 */
 
-int	place_piece(char **box, char *piece, int x,  int y)
+int		place_piece(char **box, char *piece, int x, int y)
 {
 	int ycur;
 	int h;
+	int res;
 
 	h = 0;
 	while (*piece && box[x][0])
@@ -36,15 +51,10 @@ int	place_piece(char **box, char *piece, int x,  int y)
 		ycur = y;
 		while (*piece && ycur < y + 4 && *piece != '\n' && h < 4)
 		{
-			if (box[x][ycur] != '.' && (*piece >= 'A' && *piece <= 'Z'))
+			if ((res = place_block(&(box[x][ycur]), &(*piece), &h)) == -1)
 				return (0);
-			else if (box[x][ycur] == '\0')
-				break;
-			if (box[x][ycur] == '.' && (*piece >= 'A' && *piece <= 'Z'))
-			{
-				box[x][ycur] = *piece;
-				h++;
-			}
+			if (res == 0)
+				break ;
 			if (*piece)
 				piece++;
 			ycur++;
@@ -60,11 +70,11 @@ int	place_piece(char **box, char *piece, int x,  int y)
 
 /*
 ** Called after trying to place a piece and failing. It removes any pieces
-** or blocksthat were placed by the given char* piece at x,y coordinates 
+** or blocksthat were placed by the given char* piece at x,y coordinates
 ** in char** box
 */
 
-void remove_piece(char **box, char *piece, int x, int y)
+void	remove_piece(char **box, char *piece, int x, int y)
 {
 	int ycur;
 
@@ -86,7 +96,7 @@ void remove_piece(char **box, char *piece, int x, int y)
 }
 
 /*
-** Attempts to place a (t_list *piece) inside of a (char** box) by 
+** Attempts to place a (t_list *piece) inside of a (char** box) by
 ** brute forcing using a recursive backtracking method.
 **
 ** x, y are coordinates to place, sf == bool-like flag for "Solution found"
@@ -107,7 +117,7 @@ void remove_piece(char **box, char *piece, int x, int y)
 ** the initial resursive_solver call that a solution was gound.
 */
 
-int recursive_solver(char **box, t_list *pieces)
+int		recursive_solver(char **box, t_list *pieces)
 {
 	int x;
 	int y;
@@ -132,7 +142,6 @@ int recursive_solver(char **box, t_list *pieces)
 	return (0);
 }
 
-
 /*
 ** Generates a box to store the solution (Is freed if box is not large
 ** enough, and remakes one size larger)
@@ -143,17 +152,17 @@ int recursive_solver(char **box, t_list *pieces)
 ** upon finding a solution, it returns the layout.
 */
 
-char **get_solution(t_list *pieces)
+char	**get_solution(t_list *pieces)
 {
-	int size;
-	char **box;
+	int		size;
+	char	**box;
 
 	size = 1;
 	box = NULL;
 	while (box == NULL)
 	{
 		box = malloc_fillit_box(++size);
-		if (!recursive_solver(box,pieces))
+		if (!recursive_solver(box, pieces))
 			ft_delbox(&box);
 	}
 	return (box);

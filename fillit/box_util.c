@@ -6,7 +6,7 @@
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 19:40:14 by sharris           #+#    #+#             */
-/*   Updated: 2018/08/09 19:10:34 by sharris          ###   ########.fr       */
+/*   Updated: 2018/08/09 17:50:41 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ** Deals with memory leaks in case of bad malloc
 */
 
-char **malloc_fillit_box(int size)
+char	**malloc_fillit_box(int size)
 {
-	char **box;
-	int i;
+	char	**box;
+	int		i;
 
 	i = 0;
 	if (NULL == (box = (char **)ft_memalloc(sizeof(char *) * size + 1)))
@@ -45,7 +45,7 @@ char **malloc_fillit_box(int size)
 ** The array must be terminated by an empty string.
 */
 
-void ft_delbox(char ***box)
+void	ft_delbox(char ***box)
 {
 	int i;
 

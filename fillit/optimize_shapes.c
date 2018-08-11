@@ -6,7 +6,7 @@
 /*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 15:21:25 by sharris           #+#    #+#             */
-/*   Updated: 2018/07/29 15:21:25 by sharris          ###   ########.fr       */
+/*   Updated: 2018/08/11 05:26:12 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void shift_shape(char **str, int c)
 	seek = ft_strchr(start, (int)'#');
 	if ((seek - start + 4 < 20 && seek[4] == '#') || (seek - start + 9 < 20 &&
 		seek[9] == '#'))
-		seek--;
+			seek -= (seek[3] == '#') ? 2 : 1;
 	while(*seek)
 	{
 		if (*seek == '\n')

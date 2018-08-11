@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int place_block(char *target, char *piece, int *h)
+int		place_block(char *target, char *piece, int *h)
 {
 	if (*target != '.' && (*piece >= 'A' && *piece <= 'Z'))
 		return (-1);

@@ -14,12 +14,13 @@
 
 int	ft_fillit(char *file)
 {
-	t_list *start = ft_readfile(file);
-	char **box;
-	int i;
+	t_list	*start;
+	char	**box;
+	int		i;
 
+	start = ft_readfile(file);
 	i = 0;
-	if(start != NULL && ft_validateshapes(start))
+	if (start != NULL && ft_validateshapes(start))
 	{
 		optimize_shapes(start);
 		box = get_solution(start);

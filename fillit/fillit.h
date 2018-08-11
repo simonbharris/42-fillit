@@ -20,9 +20,9 @@
 typedef struct	s_shape
 {
 	char		**shape;
-	int 		tsides;
-	int	 		numblk;
-	int 		len;
+	int			tsides;
+	int			numblk;
+	int			len;
 }				t_shape;
 
 int				ft_validateshapes(t_list *shapes);

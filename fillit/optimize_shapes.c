@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static void shift_shape(char **str, int c)
+static void	shift_shape(char **str, int c)
 {
 	char *start;
 	char *seek;
@@ -21,8 +21,8 @@ static void shift_shape(char **str, int c)
 	seek = ft_strchr(start, (int)'#');
 	if ((seek - start + 4 < 20 && seek[4] == '#') || (seek - start + 9 < 20 &&
 		seek[9] == '#'))
-			seek -= (seek[3] == '#') ? 2 : 1;
-	while(*seek)
+		seek -= (seek[3] == '#') ? 2 : 1;
+	while (*seek)
 	{
 		if (*seek == '\n')
 			seek++;
@@ -41,11 +41,11 @@ static void shift_shape(char **str, int c)
 
 /*
 ** Iterates through the shift_shapes call, re-organizing the string structure.
-** Places "blocks" in most top-left position. Accepts input from t_lists 
+** Places "blocks" in most top-left position. Accepts input from t_lists
 ** validated via ft_validateshapes();
 */
 
-void	optimize_shapes(t_list *lst)
+void		optimize_shapes(t_list *lst)
 {
 	int alpha;
 

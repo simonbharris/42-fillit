@@ -12,15 +12,14 @@
 
 #include "fillit.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc == 2 && argv[1])
 	{
-		if(!ft_fillit(argv[1]))
+		if (!ft_fillit(argv[1]))
 			ft_putendl("error");
 	}
 	else
 		fillit_usage();
-	sleep(20);
 	return (0);
 }

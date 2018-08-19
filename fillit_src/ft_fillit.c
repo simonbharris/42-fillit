@@ -20,7 +20,7 @@ int	ft_fillit(char *file)
 
 	start = ft_readfile(file);
 	i = 0;
-	if (start != NULL && ft_validateshapes(start))
+	if (start != NULL && ft_validateshapes(start) && ft_lstcount(start) <= 26)
 	{
 		optimize_shapes(start);
 		box = get_solution(start);

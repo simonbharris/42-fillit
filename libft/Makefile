@@ -25,6 +25,7 @@ SRCS	= ft_abs.c \
 			ft_isupper.c \
 			ft_itoa.c \
 			ft_lstadd.c \
+			ft_lstcount.c \
 			ft_lstdel.c \
 			ft_lstdelone.c \
 			ft_lstdelone_f.c \

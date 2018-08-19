@@ -91,5 +91,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstdelone_f(void *content, size_t size);
 void			ft_lstpush(t_list **alst, t_list *new);
 int				ft_mod(int n, int m);
+int				ft_lstcount(t_list *lst);
 
 #endif

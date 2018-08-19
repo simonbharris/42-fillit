@@ -12,8 +12,8 @@
 
 #include "libft.h"
 
-void    ft_lstdelone_f(void *content, size_t size)
+void	ft_lstdelone_f(void *content, size_t size)
 {
-    ft_memdel(&content);
-    size = 0;
+	ft_memdel(&content);
+	size = 0;
 }

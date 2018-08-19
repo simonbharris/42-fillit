@@ -10,15 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Makefile for
 NAME = fillit
 
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
-LIB = -L../libft -lft
-LIBFT = ../libft/libft.a
-
-INC = -I .
-SRCS =	fillit_usage.c \
+# Fillit files
+FILLIT_DIR = ./fillit_src
+SRCS_FILES =	fillit_usage.c \
 	ft_fillit.c \
 	ft_readfile.c \
 	ft_validateshapes.c \
@@ -26,7 +23,18 @@ SRCS =	fillit_usage.c \
 	optimize_shapes.c \
 	fillit_solve.c \
 	box_util.c
+SRCS = $(addprefix $(FILLIT_DIR)/,$(SRCS_FILES))
 OBJ = $(SRCS:.c=.o)
+
+# Libft files
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+# Compiler
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
+INC = -I $(FILLIT_DIR)
+LIB = -L./libft -lft
 
 all: $(NAME)
 
@@ -34,15 +42,16 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
 
 $(LIBFT):
-	make -C ../libft
+	make -C $(LIBFT_DIR)
 
 clean:
+	echo Make Clean
 	rm -f $(OBJ)
-	make clean -C ../libft
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C ../libft
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

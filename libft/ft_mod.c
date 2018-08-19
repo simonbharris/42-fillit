@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-int ft_mod(int nbr, int mod)
+int		ft_mod(int nbr, int mod)
 {
 	int i;
 	int n;
 
 	i = 0;
 	n = 0;
-	while(i < nbr)
+	while (i < nbr)
 	{
 		n = n + 1 == mod ? 0 : n + 1;
 		i++;

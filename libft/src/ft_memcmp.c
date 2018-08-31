@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/12 16:08:54 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/12 16:08:54 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (argc == 2)
+	unsigned char	*p1;
+	unsigned char	*p2;
+	int				i;
+
+	i = 0;
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	while (i < (int)n)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
 	}
-	else
-		fillit_usage();
 	return (0);
 }

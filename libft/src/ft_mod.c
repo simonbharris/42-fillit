@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_mod.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/27 20:29:03 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/27 20:29:03 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+int		ft_mod(int nbr, int mod)
 {
-	if (argc == 2)
+	int i;
+	int n;
+
+	i = 0;
+	n = 0;
+	while (i < nbr)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		n = n + 1 == mod ? 0 : n + 1;
+		i++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	return (n);
 }

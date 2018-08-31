@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/16 21:24:00 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/16 21:24:00 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	if (argc == 2)
+	t_list *lnxt;
+
+	while (lst)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		lnxt = lst->next;
+		f(lst);
+		lst = lnxt;
 	}
-	else
-		fillit_usage();
-	return (0);
 }

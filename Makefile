@@ -28,24 +28,30 @@ OBJ = $(SRCS:.c=.o)
 
 # Libft files
 LIBFT_DIR = ./libft
+LIBFT_INC = $(LIBFT_DIR)/includes
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Compiler
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-INC = -I $(FILLIT_DIR)
+INC = -I $(LIBFT_INC) -I $(FILLIT_DIR)
 LIB = -L./libft -lft
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
 
-$(LIBFT):
+$(OBJ): %.o : %.c
+	echo OBJECTS
+	$(CC) $(FLAGS) -c $(INC) -o $@ $<
+
+$(LIBFT): 
 	make -C $(LIBFT_DIR)
 
+$(NAME): $(LIBFT) $(OBJ)
+	echo FILLIT
+	$(CC) $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
+
 clean:
-	echo Make Clean
 	rm -f $(OBJ)
 	make clean -C $(LIBFT_DIR)
 

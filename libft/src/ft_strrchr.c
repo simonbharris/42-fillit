@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/12 20:24:37 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/12 20:24:37 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (argc == 2)
+	char *hold;
+
+	hold = NULL;
+	while (*s)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		if (*s == (char)c)
+			hold = (char *)s;
+		s++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	if (c == 0)
+		return ((char *)s);
+	return (hold);
 }

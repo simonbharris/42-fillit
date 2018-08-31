@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/12 14:12:55 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/12 14:12:55 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if (argc == 2)
+	unsigned char		*d;
+	unsigned const char	*s;
+	size_t				i;
+
+	d = dst;
+	s = src;
+	i = 0;
+	while (i++ < n)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		*d = *s;
+		d++;
+		s++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	return (dst);
 }

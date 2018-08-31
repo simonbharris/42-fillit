@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/10 19:22:05 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/10 19:22:05 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+void	*ft_memalloc(size_t size)
 {
-	if (argc == 2)
-	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
-	}
-	else
-		fillit_usage();
-	return (0);
+	void	*mem;
+	int		i;
+
+	i = 0;
+	if (NULL == (mem = malloc(size)))
+		return (NULL);
+	mem = ft_memset(mem, 0, size);
+	return (mem);
 }

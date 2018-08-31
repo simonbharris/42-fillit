@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/12 16:25:10 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/12 16:25:10 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	if (argc == 2)
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (s1[i])
+		i++;
+	while (s2[j] && j < (int)n)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		s1[i + j] = s2[j];
+		j++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	s1[i + j] = '\0';
+	return (s1);
 }

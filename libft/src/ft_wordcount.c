@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/17 14:01:38 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/17 14:01:38 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+int		ft_wordcount(char *s)
 {
-	if (argc == 2)
+	int i;
+
+	i = 0;
+	while (*s)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		while (ft_iswhitespace(*s))
+			s++;
+		if (*s)
+			i++;
+		while (*s && !ft_iswhitespace(*s))
+			s++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	return (i);
 }

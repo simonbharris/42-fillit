@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_stpncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/29 17:59:25 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/29 17:59:25 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+char	*ft_stpncpy(char *dst, const char *src, size_t len)
 {
-	if (argc == 2)
+	int i;
+
+	i = -1;
+	while (src[++i] && i < (int)len)
+		dst[i] = src[i];
+	while (i < (int)len)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		dst[i] = '\0';
+		i++;
 	}
-	else
-		fillit_usage();
-	return (0);
+	return (dst[i]);
 }

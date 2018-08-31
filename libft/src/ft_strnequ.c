@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fromo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/25 19:57:15 by fromo             #+#    #+#             */
-/*   Updated: 2018/08/11 05:25:17 by sharris          ###   ########.fr       */
+/*   Created: 2018/07/11 14:04:49 by sharris           #+#    #+#             */
+/*   Updated: 2018/07/11 14:04:49 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <libft.h>
 
-int	main(int argc, char **argv)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	if (argc == 2)
+	size_t i;
+
+	i = 0;
+	while (s1 && s2 && i < n)
 	{
-		if (!ft_fillit(argv[1]))
-			ft_putendl("error");
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (0);
 	}
-	else
-		fillit_usage();
+	if (i == n)
+		return (1);
 	return (0);
 }

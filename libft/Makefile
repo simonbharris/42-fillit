@@ -1,28 +1,33 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefil                                            :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalhomai <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/06/25 20:43:31 by aalhomai          #+#    #+#              #
-#    Updated: 2018/06/25 20:57:10 by aalhomai         ###   ########.fr        #
+#    Created: 2018/07/09 18:59:28 by sharris           #+#    #+#              #
+#    Updated: 2018/07/09 18:59:28 by sharris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft.a
-SRCS	= ft_abs.c \
+NAME = libft.a
+
+INC_DIR = ./includes/
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
+
+SRC_FILES = ft_abs.c \
 			ft_atoi.c \
 			ft_bzero.c \
-			ft_capitalize.c \
-			ft_countwords.c \
 			ft_isalnum.c \
 			ft_isalpha.c \
 			ft_isascii.c \
 			ft_isdigit.c \
+			ft_isempty.c \
 			ft_islower.c \
 			ft_isprint.c \
 			ft_isupper.c \
+			ft_iswhitespace.c \
 			ft_itoa.c \
 			ft_lstadd.c \
 			ft_lstcount.c \
@@ -50,6 +55,7 @@ SRCS	= ft_abs.c \
 			ft_putnbr_fd.c \
 			ft_putstr.c \
 			ft_putstr_fd.c \
+			ft_realloc.c \
 			ft_stpncpy.c \
 			ft_strcat.c \
 			ft_strchr.c \
@@ -73,27 +79,39 @@ SRCS	= ft_abs.c \
 			ft_strnew.c \
 			ft_strnstr.c \
 			ft_strrchr.c \
-			ft_strrev.c \
 			ft_strsplit.c \
 			ft_strstr.c \
 			ft_strsub.c \
 			ft_strtrim.c \
 			ft_tolower.c \
-			ft_toupper.c 
-OBJ		= $(SRCS:%.c=%.o)
+			ft_toupper.c \
+			ft_wordcount.c
+OBJ = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
+HEADER = $(INC_DIR)/libft.h
+
+CC = gcc
+CFLAGS = -c -Wall -Wextra -Werror
+
+AR = ar
+ARFLAGS = rcs
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		@ar rcs $(NAME) $(OBJ)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
-$(OBJ): $(SRCS)
-		@gcc -Wall -Wextra -Werror -c $(SRCS)
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c mkdir
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -o $@ $<
+
+mkdir:
+	mkdir obj
 
 clean:
-		@rm -f $(OBJ)
+	@rm -Rf $(OBJ_DIR)
 
 fclean: clean
-		@rm -f $(NAME)
+	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all 
+
+.PHONY: clear, fclean, all, re, mkdir
